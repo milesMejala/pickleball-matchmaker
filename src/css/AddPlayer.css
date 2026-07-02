@@ -6,6 +6,7 @@
 
 .add-player-wrapper h2 {
     margin-bottom: 1rem;
+    color: var(--primary-600)
 }
 
 input[type="text"] {
@@ -55,5 +56,6 @@ fieldset {
     min-height: 4rem;
     border-radius: 1rem;
     border: none;
-    background: #154212;
+    color: var(--neutrals-50);
+    background: var(--primary-600);
 }

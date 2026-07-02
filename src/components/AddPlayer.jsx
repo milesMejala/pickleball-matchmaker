@@ -4,7 +4,7 @@ import "../css/AddPlayer.css";
 export default function AddPlayer() {
   const [formData, setFormData] = useState({
     name: "",
-    skill: "Beg."
+    skill: "Beg.",
   });
 
   function handleChange(event) {
@@ -26,7 +26,8 @@ export default function AddPlayer() {
   }
 
   return (
-    <div>
+    <section className="add-player-wrapper">
+      <h2>Add Player</h2>
       <form onSubmit={handleSubmit}>
         <input
           id="name"
@@ -36,34 +37,43 @@ export default function AddPlayer() {
           onChange={handleChange}
           placeholder="Player Name"
         />
-        <div className="radio-btns">
+        <fieldset>
+          <label className="radio-option" htmlFor="beginner">
             <input
-                id="beginner"
-                name="skill"
-                type="radio"
-                value="Beg."
-                onChange={handleChange}
-                checked={formData.skill === "Beg."}
+              id="beginner"
+              name="skill"
+              type="radio"
+              value="Beg."
+              onChange={handleChange}
+              checked={formData.skill === "Beg."}
             />
+            <span>Beg.</span>
+          </label>
+          <label className="radio-option" htmlFor="intermediate">
             <input
-                id="intermediate"
-                name="skill"
-                type="radio"
-                value="Int."
-                onChange={handleChange}
-                checked={formData.skill === "Int."}
+              id="intermediate"
+              name="skill"
+              type="radio"
+              value="Int."
+              onChange={handleChange}
+              checked={formData.skill === "Int."}
             />
+            <span>Int.</span>
+          </label>
+          <label className="radio-option" htmlFor="advanced">
             <input
-                id="advanced"
-                name="skill"
-                type="radio"
-                value="Adv."
-                onChange={handleChange}
-                checked={formData.skill === "Adv."}
+              id="advanced"
+              name="skill"
+              type="radio"
+              value="Adv."
+              onChange={handleChange}
+              checked={formData.skill === "Adv."}
             />
-        </div>
+            <span>Adv.</span>
+          </label>
+        </fieldset>
         <button type="submit">Add to Roster</button>
       </form>
-    </div>
+    </section>
   );
 }

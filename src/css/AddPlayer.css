@@ -1,6 +1,7 @@
 .add-player-wrapper {
-    margin: 0 1rem 0 1rem;
-    border: 1px solid red;
+    margin: 0 1rem 1rem 1rem;
+    border-radius: 1rem;
+    box-shadow: 0px 4px 12px 0px hsla(212, 63%, 12%, 20%);
     padding: 1.5rem;
 }
 
@@ -13,8 +14,10 @@ input[type="text"] {
     min-width: 100%;
     min-height: 3rem;
     border-radius: 1rem;
-    border: 1px solid #C2C9BB;
+    padding: 1rem;
+    border: 2px solid var(--neutrals-300);
     margin-bottom: 0.75rem;
+    outline-color: var(--primary-300);
 }
 
 fieldset {
@@ -46,14 +49,14 @@ fieldset {
 }
 
 .radio-option input:checked + span {
-    border-color: black;
-    background: black;
-    color: white;
+    background: var(--neutrals-50);
+    color: var(--neutrals-900);
+    font-weight: 600;
 }
 
 .add-player-wrapper button {
     width: 100%;
-    min-height: 4rem;
+    min-height: 3rem;
     border-radius: 1rem;
     border: none;
     color: var(--neutrals-50);

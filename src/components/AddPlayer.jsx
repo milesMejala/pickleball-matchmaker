@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "../css/AddPlayer.css";
 
-export default function AddPlayer() {
+export default function AddPlayer({ onAddPlayer }) {
   const [formData, setFormData] = useState({
     name: "",
     skill: "Beg.",
@@ -19,6 +19,7 @@ export default function AddPlayer() {
   function handleSubmit(event) {
     event.preventDefault();
     console.log(formData);
+    onAddPlayer(formData);
 
     setFormData({
       name: "",

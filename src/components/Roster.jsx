@@ -1,19 +1,19 @@
 import "../css/Roster.css";
 
-export default function Roster({ players }) {
+export default function Roster({ players, onRemovePlayer }) {
   return (
     <section className="roster-wrapper">
       <h2>Roster</h2>
       {players.map((p) => (
-        <div className="player-wrapper">
+        <div key={p.id} className="player-wrapper">
           <div className="player-info">
-            <span>Letter</span>
+            <span className="player-initial">{p.name.charAt(0).toUpperCase()}</span>
             <div>
               <span>{p.name}</span>
               <span>{p.skill}</span>
             </div>
           </div>
-          <span>x</span>
+          <button type="button" className="remove-player" onClick={() => onRemovePlayer(p.id)}>X</button>
         </div>
       ))}
     </section>

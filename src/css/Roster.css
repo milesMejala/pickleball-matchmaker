@@ -14,7 +14,6 @@
   min-width: 100%;
   min-height: 4rem;
   margin: 0 0 0.5rem 0;
-  border: 1px solid red;
   border-radius: 12px;
   padding: 0 0.75rem;
   display: flex;
@@ -31,4 +30,20 @@
 
 .player-info > div > span {
   display: block;
+  font-weight: 600;
+}
+
+.player-info > div > span:last-child {
+  font-weight: 700;
+}
+
+.player-initial {
+  min-width: 2rem;
+  min-height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #D3E4FE;
+  font-weight: 600;
 }

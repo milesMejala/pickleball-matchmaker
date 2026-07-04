@@ -44,9 +44,9 @@ export default function AddPlayer({ onAddPlayer }) {
               id="beginner"
               name="skill"
               type="radio"
-              value="Beg."
+              value="Beginner"
               onChange={handleChange}
-              checked={formData.skill === "Beg."}
+              checked={formData.skill === "Beginner"}
             />
             <span>Beg.</span>
           </label>
@@ -55,9 +55,9 @@ export default function AddPlayer({ onAddPlayer }) {
               id="intermediate"
               name="skill"
               type="radio"
-              value="Int."
+              value="Intermediate"
               onChange={handleChange}
-              checked={formData.skill === "Int."}
+              checked={formData.skill === "Intermediate"}
             />
             <span>Int.</span>
           </label>
@@ -66,9 +66,9 @@ export default function AddPlayer({ onAddPlayer }) {
               id="advanced"
               name="skill"
               type="radio"
-              value="Adv."
+              value="Advanced"
               onChange={handleChange}
-              checked={formData.skill === "Adv."}
+              checked={formData.skill === "Advanced"}
             />
             <span>Adv.</span>
           </label>

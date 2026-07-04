@@ -15,12 +15,16 @@ function App() {
     setPlayers((prev) => prev.filter((p) => p.id !== id));
   }
 
+  function removeAll() {
+    setPlayers([]);
+  }
+
   return (
     <>
       <h1>Pickleball Matchmaker</h1>
       <p>Enter players, balance skill levels, and generate fair matchups.</p>
       <AddPlayer onAddPlayer={addPlayer} />
-      <Roster players={players} onRemovePlayer={removePlayer}/>
+      <Roster players={players} onRemovePlayer={removePlayer} onRemoveAll={removeAll}/>
     </>
   );
 }

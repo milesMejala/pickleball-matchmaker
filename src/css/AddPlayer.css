@@ -61,4 +61,7 @@ fieldset {
     border: none;
     color: var(--neutrals-50);
     background: var(--primary-600);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
 }

@@ -5,9 +5,21 @@
   padding: 1.5rem;
 }
 
-.roster-wrapper > h2 {
-    margin: 0 0 1rem 0;
-    color: var(--primary-600);
+.roster-header {
+  margin: 0 0 1rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.roster-header > h2 {
+  color: var(--primary-600);
+}
+
+.roster-header > button {
+  border: none;
+  background: none;
+  color: var(--secondary-700);
 }
 
 .player-wrapper {
@@ -22,28 +34,63 @@
   background: #eff4ff;
 }
 
+.clear-all {
+  cursor: pointer;
+}
+
+.clear-all > span {
+  color: var(--error-600);
+}
+
 .player-info {
   display: flex;
   align-items: center;
   gap: 0.75rem;
 }
 
-.player-info > div > span {
+.player-info > div > span:first-child {
   display: block;
-  font-weight: 600;
+  margin: 0 0 0.25rem 0;
 }
 
-.player-info > div > span:last-child {
-  font-weight: 700;
+.player-skill{
+  border-radius: 9999px;
+  padding: 0.125rem 0.5rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.beginner {
+  background: #FBBF24;
+}
+
+.intermediate {
+  background: #C0C0C0;
+}
+
+.advanced {
+  background: #FFD700;
 }
 
 .player-initial {
   min-width: 2rem;
   min-height: 2rem;
   border-radius: 50%;
+  padding: 0.375rem 0.875rem;
   display: flex;
   justify-content: center;
   align-items: center;
   background: #D3E4FE;
+  font-size: 1.5rem;
   font-weight: 600;
+}
+
+.remove-player {
+  border: none;
+  cursor: pointer;
+  background: none;
+}
+
+.remove-player > span {
+  color: var(--neutrals-600);
 }

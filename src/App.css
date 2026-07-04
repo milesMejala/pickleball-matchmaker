@@ -30,7 +30,27 @@
     --secondary-800: #373800;
     --secondary-900: #1C1C00;
 
+    --error-50: #FEF2F2;
+    --error-100: #FEE2E2;
+    --error-200: #FECACA;
+    --error-300: #FCA5A5;
+    --error-400: #F87171;
+    --error-500: #EF4444;
+    --error-600: #DC2626;
+    --error-700: #B91C1C;
+    --error-800: #991B1B;
+    --error-900: #7F1D1D;
+
+
     --primary-font: 'Inter', sans-serif;
+}
+
+.material-symbols-rounded {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 20
 }
 
 * {
@@ -42,6 +62,7 @@
 
 body {
     background: var(--neutrals-50);
+    color: var(--neutrals-900);
 }
 
 h1 {

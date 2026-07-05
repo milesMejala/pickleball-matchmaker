@@ -70,7 +70,7 @@ h1 {
     color: var(--primary-600)
 }
 
-p {
+.intro-text {
     width: 18rem;
     margin: 1.5rem auto 1.5rem auto;
     text-align: center;

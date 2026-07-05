@@ -1,5 +1,6 @@
 import AddPlayer from "./components/AddPlayer";
 import Roster from "./components/Roster";
+import GenerateMatchups from "./components/GenerateMatchups";
 import "./App.css";
 
 import { useState } from "react";
@@ -19,12 +20,15 @@ function App() {
     setPlayers([]);
   }
 
+  const [numberOfCourts, setNumberOfCourts] = useState(1);
+
   return (
     <>
       <h1>Pickleball Matchmaker</h1>
-      <p>Enter players, balance skill levels, and generate fair matchups.</p>
+      <p className="intro-text">Enter players, balance skill levels, and generate fair matchups.</p>
       <AddPlayer onAddPlayer={addPlayer} />
       <Roster players={players} onRemovePlayer={removePlayer} onRemoveAll={removeAll}/>
+      <GenerateMatchups numberOfCourts={numberOfCourts} onSetNumberOfCourts={setNumberOfCourts}/>
     </>
   );
 }

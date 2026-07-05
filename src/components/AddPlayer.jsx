@@ -4,7 +4,7 @@ import "../css/AddPlayer.css";
 export default function AddPlayer({ onAddPlayer }) {
   const [formData, setFormData] = useState({
     name: "",
-    skill: "Beg.",
+    skill: "Beginner",
   });
 
   function handleChange(event) {

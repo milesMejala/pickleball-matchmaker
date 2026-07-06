@@ -23,13 +23,14 @@ function App() {
   const [numberOfCourts, setNumberOfCourts] = useState(1);
 
   return (
-    <>
+    <div>
       <h1>Pickleball Matchmaker</h1>
       <p className="intro-text">Enter players, balance skill levels, and generate fair matchups.</p>
       <AddPlayer onAddPlayer={addPlayer} />
       <Roster players={players} onRemovePlayer={removePlayer} onRemoveAll={removeAll}/>
       <GenerateMatchups numberOfCourts={numberOfCourts} onSetNumberOfCourts={setNumberOfCourts}/>
-    </>
+      <button className="generate-matchups-btn">Generate Matchups</button>
+    </div>
   );
 }
 

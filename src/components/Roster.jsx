@@ -1,12 +1,6 @@
 import "../css/Roster.css";
 
-export default function Roster({ players, onRemovePlayer, onRemoveAll }) {
-
-  const skillClass = {
-    Beginner: "beginner",
-    Intermediate: "intermediate",
-    Advanced: "advanced",
-  };
+export default function Roster({ players, onRemovePlayer, onRemoveAll, skillClass }) {
 
   return (
     <section className="roster-wrapper">
@@ -29,7 +23,7 @@ export default function Roster({ players, onRemovePlayer, onRemoveAll }) {
             <span className="player-initial">{p.name.charAt(0).toUpperCase()}</span>
             <div>
               <span>{p.name}</span>
-              <span className={`player-skill ${skillClass[p.skill]}`}>{p.skill}</span>
+              <span className={`player-skill ${p.skill.toLowerCase()}`}>{p.skill}</span>
             </div>
           </div>
           <button 

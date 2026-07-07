@@ -1,6 +1,13 @@
 import "../css/GenerateMatchups.css"
 
-export default function GenerateMatchups({numberOfCourts, onSetNumberOfCourts}) {
+export default function GenerateMatchups({
+  numberOfCourts, 
+  onSetNumberOfCourts,
+  balanceBySkill,
+  onSetBalanceBySkill,
+  randomize,
+  onSetRandomize
+}) {
   return (
     <section className="generate-matchups-wrapper">
       <h2>Match Options</h2>
@@ -10,7 +17,11 @@ export default function GenerateMatchups({numberOfCourts, onSetNumberOfCourts}) 
           <p>Distribute talent evenly</p>
         </div>
 
-        <input type="checkbox" role="switch"/>
+        <input 
+          type="checkbox" 
+          role="switch"
+          checked={balanceBySkill}
+          onChange={(e) => onSetBalanceBySkill(e.target.checked)}/>
         <span className="toggle-track"></span>
       </label>
       <label className="toggle-row">
@@ -19,7 +30,11 @@ export default function GenerateMatchups({numberOfCourts, onSetNumberOfCourts}) 
           <p>Mix up the pairings</p>
         </div>
 
-        <input type="checkbox" role="switch"/>
+        <input 
+          type="checkbox" 
+          role="switch"
+          checked={randomize}
+          onChange={(e) => onSetRandomize(e.target.checked)}/>
         <span className="toggle-track"></span>
       </label>
       <div className="available-courts-wrapper">

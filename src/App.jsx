@@ -1,6 +1,7 @@
 import AddPlayer from "./components/AddPlayer";
 import Roster from "./components/Roster";
 import GenerateMatchups from "./components/GenerateMatchups";
+import Matchups from "./components/Matchups";
 import "./App.css";
 
 import { useState } from "react";
@@ -49,29 +50,25 @@ function App() {
       pool = shuffle(pool)
     }
 
-    if (balanceBySkill) {
-      pool.sort((a, b) => skillClass[a.skill] - skillClass[b.skill])
-    }
-
     const playersPerRound = numberOfCourts * 4
     const rounds = []
-    const remaining = [...pool]
 
     // Generate enough rounds so every player gets to play at least once
     const usedIds = new Set()
 
     while (usedIds.size < pool.length) {
       // Prioritize players who haven't played yet, then fill with others
-      const notYetPlayed = remaining.filter(p => !usedIds.has(p.id))
-      const alreadyPlayed = remaining.filter(p => usedIds.has(p.id))
+      const notYetPlayed = []
+      const alreadyPlayed = []
+      for (const p of pool) {
+        if (usedIds.has(p.id)) alreadyPlayed.push(p)
+        else notYetPlayed.push(p)
+      }
       
       // Select players for this round: unplayed first, then fill remaining spots
-      let roundPlayers = [...notYetPlayed]
-      if (roundPlayers.length < playersPerRound) {
-        roundPlayers = [...roundPlayers, ...alreadyPlayed.slice(0, playersPerRound - roundPlayers.length)]
-      } else {
-        roundPlayers = roundPlayers.slice(0, playersPerRound)
-      }
+      const roundPlayers = notYetPlayed.length >= playersPerRound
+        ? notYetPlayed.slice(0, playersPerRound)
+        : [...notYetPlayed, ...alreadyPlayed.slice(0, playersPerRound - notYetPlayed.length)]
 
       // Need at least 4 players to form a match
       if (roundPlayers.length < 4) break
@@ -135,7 +132,7 @@ function App() {
       <h1>Pickleball Matchmaker</h1>
       <p className="intro-text">Enter players, balance skill levels, and generate fair matchups.</p>
       <AddPlayer onAddPlayer={addPlayer} />
-      <Roster players={players} skillClass={skillClass} onRemovePlayer={removePlayer} onRemoveAll={removeAll}/>
+      <Roster players={players} onRemovePlayer={removePlayer} onRemoveAll={removeAll}/>
       <GenerateMatchups 
         numberOfCourts={numberOfCourts} 
         onSetNumberOfCourts={setNumberOfCourts}
@@ -145,40 +142,7 @@ function App() {
         onSetRandomize={setRandomize}
       />
       <button className="generate-matchups-btn" onClick={handleGenerate}>Generate Matchups</button>
-      {matchups.length > 0 && (
-        <section className="matchups-results">
-          <h2>Matchups</h2>
-          {matchups.map((round) => (
-            <div key={round.id} className="round-card">
-              <h3 className="round-title">Round {round.roundNumber}</h3>
-              {round.courts.map((court, courtIndex) => (
-                <div key={court.id} className="court-card">
-                  <h4>Court {courtIndex + 1}</h4>
-                  <div className="court-teams">
-                    <div className="team">
-                      <span className="team-label">Team A</span>
-                      <span>{court.teamA.player1.name} ({court.teamA.player1.skill})</span>
-                      <span>{court.teamA.player2.name} ({court.teamA.player2.skill})</span>
-                    </div>
-                    <span className="vs">vs</span>
-                    <div className="team">
-                      <span className="team-label">Team B</span>
-                      <span>{court.teamB.player1.name} ({court.teamB.player1.skill})</span>
-                      <span>{court.teamB.player2.name} ({court.teamB.player2.skill})</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-              {round.sittingOut.length > 0 && (
-                <div className="sitting-out">
-                  <span className="sitting-out-label">Sitting out:</span>
-                  <span>{round.sittingOut.map(p => p.name).join(', ')}</span>
-                </div>
-              )}
-            </div>
-          ))}
-        </section>
-      )}
+      {matchups.length > 0 && <Matchups matchups={matchups}/>}
     </div>
   );
 }

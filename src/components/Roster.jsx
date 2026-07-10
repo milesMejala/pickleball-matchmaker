@@ -1,6 +1,22 @@
+import { useRef } from "react";
 import "../css/Roster.css";
 
-export default function Roster({ players, onRemovePlayer, onRemoveAll, skillClass }) {
+export default function Roster({ players, onRemovePlayer, onRemoveAll }) {
+
+  const clearDialogRef = useRef(null)
+
+  function openClearDialog() {
+    clearDialogRef.current?.showModal()
+  }
+
+  function closeClearDialog() {
+    clearDialogRef.current?.close()
+  }
+
+  function handleClearAll() {
+    onRemoveAll()
+    closeClearDialog()
+  }
 
   return (
     <section className="roster-wrapper">
@@ -8,7 +24,7 @@ export default function Roster({ players, onRemovePlayer, onRemoveAll, skillClas
         <h2>Roster</h2>
         <button 
           type="button" 
-          onClick={() => onRemoveAll()}
+          onClick={openClearDialog}
           className="clear-all"
           aria-label="Delete all players"
           >
@@ -17,27 +33,64 @@ export default function Roster({ players, onRemovePlayer, onRemoveAll, skillClas
             </span>
         </button>
       </div>
-      {players.map((p) => (
-        <div key={p.id} className="player-wrapper">
-          <div className="player-info">
-            <span className="player-initial">{p.name.charAt(0).toUpperCase()}</span>
-            <div>
-              <span>{p.name}</span>
-              <span className={`player-skill ${p.skill.toLowerCase()}`}>{p.skill}</span>
+      {players.length > 0 ? (
+        players.map((p) => (
+          <div key={p.id} className="player-wrapper">
+            <div className="player-info">
+              <span className="player-initial">{p.name.charAt(0).toUpperCase()}</span>
+              <div>
+                <span>{p.name}</span>
+                <span className={`player-skill ${p.skill.toLowerCase()}`}>{p.skill}</span>
+              </div>
             </div>
+            <button 
+              type="button" 
+              className="remove-player" 
+              onClick={() => onRemovePlayer(p.id)}
+              aria-label="Delete player"
+              >
+                <span className="material-symbols-rounded">
+                  delete  
+                </span> 
+              </button>
           </div>
-          <button 
-            type="button" 
-            className="remove-player" 
-            onClick={() => onRemovePlayer(p.id)}
-            aria-label="Delete player"
+        ))
+      ) : (
+        <p className="empty-roster">No players yet. Add some!</p>
+      )}
+
+      {/* the dialog element for clear all players */}
+      <dialog
+        ref={clearDialogRef}
+        className="clear-dialog"
+        aria-labelledby="clear-dialog-title"
+        aria-describedby="clear-dialog-description"
+      >
+        <div className="clear-dialog-content">  
+          <h3>Clear all players?</h3>
+
+          <p>
+            This will permanently remove every player from the roster.
+          </p>
+
+          <div className="clear-dialog-actions">
+            <button
+              type="button"
+              className="dialog-confirm"
+              onClick={handleClearAll}
             >
-              <span className="material-symbols-rounded">
-                delete  
-              </span> 
+              Clear all
             </button>
+            <button
+              type="button"
+              className="dialog-cancel"
+              onClick={closeClearDialog}
+            >
+              Cancel
+            </button>
+          </div>
         </div>
-      ))}
+      </dialog>
     </section>
   );
 }

@@ -84,18 +84,20 @@ function App() {
         usable.sort((a, b) => skillClass[a.skill] - skillClass[b.skill])
       }
 
-      // Pair up using the balanced pairing (weakest + strongest)
-      const teams = []
-      let left = 0
-      let right = usable.length - 1
+      // Pair by splitting into lower/upper skill halves, shuffling within
+      // each half, then pairing across. This ensures teams mix weaker +
+      // stronger players while allowing varied matchups (e.g. Adv+Int,
+      // not just Adv+Beg every time).
+      const mid = Math.floor(usable.length / 2)
+      const lowerHalf = shuffle(usable.slice(0, mid))
+      const upperHalf = shuffle(usable.slice(mid))
 
-      while (left < right) {
+      const teams = []
+      for (let i = 0; i < Math.min(lowerHalf.length, upperHalf.length); i++) {
         teams.push({
-          player1: usable[left],
-          player2: usable[right]
+          player1: lowerHalf[i],
+          player2: upperHalf[i]
         })
-        left++
-        right--
       }
 
       const courts = []

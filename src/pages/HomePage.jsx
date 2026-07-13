@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router";
+import { useNavigate } from "react-router";
 
 import AddPlayer from "../components/AddPlayer";
 import Roster from "../components/Roster";
@@ -16,6 +16,8 @@ export default function HomePage() {
   const [randomize, setRandomize] = useState(true)
   const [matchups, setMatchups] = useState([])
   const [matchupError, setMatchupError] = useState("")
+
+  const navigate = useNavigate()
 
 
   function addPlayer(player) {
@@ -230,7 +232,7 @@ export default function HomePage() {
     }
     setMatchupError("")
     const courts = generateMatchups(players, numberOfCourts, balanceBySkill, randomize);
-    setMatchups(courts)
+    navigate("/matchups", { state: { matchups: courts } })
   }
 
 

@@ -67,7 +67,7 @@ body {
 }
 
 .input-error {
-    color: var(--error-900);
+    color: var(--error-600);
     font-size: 0.8rem;
     margin: 0 0 0.75rem 0.5rem;
 }

@@ -3,7 +3,6 @@ import "../css/Matchups.css";
 export default function Matchups({matchups}) {
     return (
         <section className="matchups-results">
-          <h2>Matchups</h2>
           {matchups.map((round) => (
             <div key={round.id} className="round-card">
               <h3 className="round-title">Round {round.roundNumber}</h3>
@@ -12,15 +11,27 @@ export default function Matchups({matchups}) {
                   <h4>Court {courtIndex + 1}</h4>
                   <div className="court-teams">
                     <div className="team">
-                      <span className="team-label">Team A</span>
-                      <span>{court.teamA.player1.name} ({court.teamA.player1.skill})</span>
-                      <span>{court.teamA.player2.name} ({court.teamA.player2.skill})</span>
-                    </div>
-                    <span className="vs">vs</span>
+                      <p className="team-label">Team A</p>
+                      <div className="player">
+                        <p>{court.teamA.player1.name}</p>
+                        <span>({court.teamA.player1.skill})</span>
+                      </div>
+                      <div className="player">
+                        <p>{court.teamA.player2.name}</p>
+                        <span>({court.teamA.player2.skill})</span>
+                      </div>
+                    </div>  
+                    <p className="vs">vs</p>
                     <div className="team">
-                      <span className="team-label">Team B</span>
-                      <span>{court.teamB.player1.name} ({court.teamB.player1.skill})</span>
-                      <span>{court.teamB.player2.name} ({court.teamB.player2.skill})</span>
+                      <p className="team-label">Team B</p>
+                      <div className="player">
+                        <p>{court.teamB.player1.name}</p>
+                        <span>({court.teamB.player1.skill})</span>
+                      </div>
+                      <div className="player">
+                        <p>{court.teamB.player2.name}</p>
+                        <span>({court.teamB.player2.skill})</span>
+                      </div>
                     </div>
                   </div>
                 </div>

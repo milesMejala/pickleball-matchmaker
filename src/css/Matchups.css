@@ -1,14 +1,27 @@
 .round-card {
-    background: var(--neutrals-100);
     border-radius: 16px;
     padding: 1rem;
     margin-bottom: 1rem;
+    box-shadow: 0px 4px 12px 0px hsla(212, 63%, 12%, 20%);
 }
 
 .round-title {
     color: var(--primary-600);
     margin-bottom: 0.75rem;
     font-size: 1.2rem;
+}
+
+h4 {
+    margin: 0 0 2rem 0;
+}
+
+.team-label {
+    margin: 0 0 0.75rem 0;
+}
+
+.vs {
+    margin: 1.5rem 0;
+    text-align: center;
 }
 
 .sitting-out {
@@ -27,4 +40,13 @@
     font-weight: 600;
     color: var(--neutrals-800);
     white-space: nowrap;
+}
+
+.player {
+    margin: 0 0 0.75rem 0;
+    border-radius: 8px;
+    padding: 1rem 1rem;
+    display: flex;
+    justify-content: space-around;
+    background: #E5EEFF;
 }

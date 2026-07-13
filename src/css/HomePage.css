@@ -1,0 +1,23 @@
+h1 {
+    padding: 1rem;
+    color: var(--primary-600)
+}
+
+.intro-text {
+    min-width: 18rem;
+    margin: 1.5rem auto 1.5rem auto;
+    text-align: center;
+    color: var(--neutrals-900)
+}
+
+.generate-matchups-btn {
+    min-width: 100%;
+    min-height: 4rem;
+    background-color: var(--primary-600);
+    border: none;
+    border-radius: 16px;
+    font-size: 1.5rem;
+    font-weight:600;
+    color: white;
+    cursor: pointer;
+}

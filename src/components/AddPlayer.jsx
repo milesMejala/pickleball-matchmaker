@@ -6,9 +6,12 @@ export default function AddPlayer({ onAddPlayer }) {
     name: "",
     skill: "Beginner",
   });
+  const [error, setError] = useState("");
 
   function handleChange(event) {
     const { name, value } = event.target;
+
+    if (name === "name") setError("");
 
     setFormData((prev) => ({
       ...prev,
@@ -18,12 +21,20 @@ export default function AddPlayer({ onAddPlayer }) {
 
   function handleSubmit(event) {
     event.preventDefault();
+
+    if (!formData.name.trim()) {
+      setError("Please enter a player name.");
+      return;
+    }
+
     console.log(formData);
     onAddPlayer(formData);
 
     setFormData({
       name: "",
+      skill: "Beginner",
     });
+    setError("");
   }
 
   return (
@@ -37,7 +48,9 @@ export default function AddPlayer({ onAddPlayer }) {
           value={formData.name}
           onChange={handleChange}
           placeholder="Player Name"
+          aria-describedby={error ? "name-error" : undefined}
         />
+        {error && <p id="name-error" className="input-error">{error}</p>}
         <fieldset>
           <label className="radio-option" htmlFor="beginner">
             <input

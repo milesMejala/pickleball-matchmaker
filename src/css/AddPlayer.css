@@ -20,6 +20,12 @@ input[type="text"] {
     outline-color: var(--primary-300);
 }
 
+.input-error {
+    color: #e53e3e;
+    font-size: 0.8rem;
+    margin: 0 0 0.75rem 0.5rem;
+}
+
 fieldset {
     margin-bottom: 1rem;
     border-radius: 999px;

@@ -15,10 +15,12 @@ export default function HomePage() {
   const [balanceBySkill, setBalanceBySkill] = useState(true)
   const [randomize, setRandomize] = useState(true)
   const [matchups, setMatchups] = useState([])
+  const [matchupError, setMatchupError] = useState("")
 
 
   function addPlayer(player) {
     setPlayers((prev) => [...prev, { ...player, id: crypto.randomUUID() }]);
+    setMatchupError("")
   }
   
   const skillClass = {
@@ -222,7 +224,12 @@ export default function HomePage() {
   }
 
   function handleGenerate() {
-    const courts = generateMatchups(players, numberOfCourts, balanceBySkill, randomize)
+    if (players.length < 4) {
+      setMatchupError("You need at least 4 players to generate matchups.")
+      return
+    }
+    setMatchupError("")
+    const courts = generateMatchups(players, numberOfCourts, balanceBySkill, randomize);
     setMatchups(courts)
   }
 
@@ -242,6 +249,7 @@ export default function HomePage() {
         onSetRandomize={setRandomize}
       />
       <button className="generate-matchups-btn" onClick={handleGenerate}>Generate Matchups</button>
+      {matchupError && <p className="input-error">{matchupError}</p>}
       {matchups.length > 0 && <Matchups matchups={matchups}/>}
     </div>
   );

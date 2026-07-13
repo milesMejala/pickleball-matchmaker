@@ -65,3 +65,9 @@ body {
     background: var(--neutrals-50);
     color: var(--neutrals-900);
 }
+
+.input-error {
+    color: var(--error-900);
+    font-size: 0.8rem;
+    margin: 0 0 0.75rem 0.5rem;
+}

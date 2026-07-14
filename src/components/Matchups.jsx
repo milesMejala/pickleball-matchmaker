@@ -14,23 +14,23 @@ export default function Matchups({matchups}) {
                       <p className="team-label">Team A</p>
                       <div className="player">
                         <p>{court.teamA.player1.name}</p>
-                        <span>({court.teamA.player1.skill})</span>
+                        <span className={`player-skill ${court.teamA.player1.skill.toLowerCase()}`}>{court.teamA.player1.skill}</span>
                       </div>
                       <div className="player">
                         <p>{court.teamA.player2.name}</p>
-                        <span>({court.teamA.player2.skill})</span>
+                        <span className={`player-skill ${court.teamA.player2.skill.toLowerCase()}`}>{court.teamA.player2.skill}</span>
                       </div>
                     </div>  
                     <p className="vs">vs</p>
                     <div className="team">
-                      <p className="team-label">Team B</p>
+                      <p className="team-label align-text-end">Team B</p>
                       <div className="player">
                         <p>{court.teamB.player1.name}</p>
-                        <span>({court.teamB.player1.skill})</span>
+                        <span className={`player-skill ${court.teamB.player1.skill.toLowerCase()}`}>{court.teamB.player1.skill}</span>
                       </div>
                       <div className="player">
                         <p>{court.teamB.player2.name}</p>
-                        <span>({court.teamB.player2.skill})</span>
+                        <span className={`player-skill ${court.teamB.player2.skill.toLowerCase()}`}>{court.teamB.player2.skill}</span>
                       </div>
                     </div>
                   </div>

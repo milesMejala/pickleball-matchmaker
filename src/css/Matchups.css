@@ -47,6 +47,17 @@ h4 {
     border-radius: 8px;
     padding: 1rem 1rem;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
     background: #E5EEFF;
+}
+
+.player p {
+    margin: 0;
+    flex: 1;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }

@@ -71,3 +71,26 @@ body {
     font-size: 0.8rem;
     margin: 0 0 0.75rem 0.5rem;
 }
+
+.player-skill{
+  border-radius: 9999px;
+  padding: 0.125rem 0.5rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+.beginner {
+  background: #FBBF24;
+}
+
+.intermediate {
+  background: #C0C0C0;
+}
+
+.advanced {
+  background: #FFD700;
+}
+
+.align-text-end {
+    text-align: end;
+}

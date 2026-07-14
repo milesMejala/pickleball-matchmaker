@@ -53,25 +53,6 @@
   margin: 0 0 0.25rem 0;
 }
 
-.player-skill{
-  border-radius: 9999px;
-  padding: 0.125rem 0.5rem;
-  font-weight: 600;
-  font-size: 0.75rem;
-}
-
-.beginner {
-  background: #FBBF24;
-}
-
-.intermediate {
-  background: #C0C0C0;
-}
-
-.advanced {
-  background: #FFD700;
-}
-
 .player-initial {
   min-width: 2rem;
   min-height: 2rem;

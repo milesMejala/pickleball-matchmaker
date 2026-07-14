@@ -3,6 +3,7 @@ import "../css/GenerateMatchups.css"
 export default function GenerateMatchups({
   numberOfCourts, 
   onSetNumberOfCourts,
+  maxCourts,
   balanceBySkill,
   onSetBalanceBySkill,
   randomize,
@@ -40,9 +41,15 @@ export default function GenerateMatchups({
       <div className="available-courts-wrapper">
         <p>Available Courts</p>
         <div className="court-counter">
-            <button onClick={() => onSetNumberOfCourts((prev) => Math.max(1, prev - 1))}>-</button>
+            <button type="button" onClick={() => onSetNumberOfCourts((prev) => Math.max(1, prev - 1))} disabled={numberOfCourts <= 1}>-</button>
             <span>{numberOfCourts}</span>
-            <button onClick={() => onSetNumberOfCourts((prev) => Math.max(1, prev + 1))}>+</button>
+            <button 
+                type="button" 
+                onClick={() => onSetNumberOfCourts((prev) => Math.min(maxCourts, prev + 1))}
+                disabled={numberOfCourts >= maxCourts}
+                >
+                +
+            </button>
         </div>
       </div>
     </section>

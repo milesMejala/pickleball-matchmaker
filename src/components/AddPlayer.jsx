@@ -26,8 +26,6 @@ export default function AddPlayer({ onAddPlayer }) {
       setError("Please enter a player name.");
       return;
     }
-
-    console.log(formData);
     onAddPlayer(formData);
 
     setFormData({

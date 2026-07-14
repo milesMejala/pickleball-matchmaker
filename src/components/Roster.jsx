@@ -39,7 +39,7 @@ export default function Roster({ players, onRemovePlayer, onRemoveAll }) {
             <div className="player-info">
               <span className="player-initial">{p.name.charAt(0).toUpperCase()}</span>
               <div>
-                <span>{p.name}</span>
+                <span className="player-name">{p.name}</span>
                 <span className={`player-skill ${p.skill.toLowerCase()}`}>{p.skill}</span>
               </div>
             </div>

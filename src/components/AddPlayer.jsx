@@ -20,16 +20,19 @@ export default function AddPlayer({ onAddPlayer }) {
     if (!pill) return;
     const idx = SKILLS.indexOf(formData.skill);
     if (idx === -1) return;
-    pill.style.translate = `${idx * pill.offsetWidth}px`;
+    pill.style.translate = `${idx * 100}%`;
   }, [formData.skill]);
 
   function handlePointerDown(e) {
     const pill = pillRef.current;
     if (!pill) return;
     
+    const idx = SKILLS.indexOf(formData.skill);
+    const startTranslate = Math.max(0, idx) * pill.offsetWidth;
+
     dragRef.current = {
       startX: e.clientX,
-      startTranslate: parseFloat(pill.style.translate) || 0,
+      startTranslate: startTranslate,
       isDragging: false,
     };
   }
@@ -68,7 +71,7 @@ export default function AddPlayer({ onAddPlayer }) {
     const idx = Math.max(0, Math.min(2, Math.round(current / pillWidth)));
 
     pill.style.transition = ""; // restore for snap animation
-    pill.style.translate = `${idx * pillWidth}px`;
+    pill.style.translate = `${idx * 100}%`;
     setFormData((prev) => ({ ...prev, skill: SKILLS[idx] }));
 
     dragRef.current = null;

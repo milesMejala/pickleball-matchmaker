@@ -26,9 +26,7 @@ export default function AddPlayer({ onAddPlayer }) {
   function handlePointerDown(e) {
     const pill = pillRef.current;
     if (!pill) return;
-    // Capture the pointer so pointermove/pointerup keep firing even if
-    // the cursor leaves the fieldset mid-drag.
-    fieldsetRef.current.setPointerCapture(e.pointerId);
+    
     dragRef.current = {
       startX: e.clientX,
       startTranslate: parseFloat(pill.style.translate) || 0,
@@ -47,6 +45,8 @@ export default function AddPlayer({ onAddPlayer }) {
     if (!dragRef.current.isDragging) {
       if (Math.abs(delta) < 6) return;
       dragRef.current.isDragging = true;
+      // Capture pointer only when drag starts, so we don't block normal clicks
+      fieldsetRef.current.setPointerCapture(e.pointerId);
       pill.style.transition = "none"; // follow finger without easing
     }
 

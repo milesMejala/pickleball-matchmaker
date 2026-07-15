@@ -21,6 +21,7 @@ input[type="text"] {
 }
 
 fieldset {
+    position: relative;
     margin-bottom: 1rem;
     border-radius: 999px;
     border: none;
@@ -28,10 +29,32 @@ fieldset {
     justify-content: space-between;
     padding: 0.25rem;
     background: #E5EEFF;
+    touch-action: none;    /* prevent scroll hijack during horizontal drag */
+    cursor: grab;
+    user-select: none;
+}
+
+fieldset:active {
+    cursor: grabbing;
+}
+
+/* Real element — JS controls translate via inline style */
+.sliding-pill {
+    position: absolute;
+    top: 0.25rem;
+    bottom: 0.25rem;
+    left: 0.25rem;
+    width: calc((100% - 0.5rem) / 3);
+    background: var(--neutrals-50);
+    border-radius: 999px;
+    box-shadow: 0 1px 4px hsla(212, 63%, 12%, 15%);
+    transition: translate 0.3s cubic-bezier(0.34, 1.2, 0.64, 1);
+    pointer-events: none; /* clicks pass through to labels */
 }
 
 .radio-option {
     width: 100%;
+    position: relative;
 }
 
 .radio-option input {
@@ -46,10 +69,11 @@ fieldset {
     padding: 0.5rem;
     border-radius: 999px;
     cursor: pointer;
+    transition: background 0.2s ease, color 0.2s ease, font-weight 0.2s ease;
 }
 
 .radio-option input:checked + span {
-    background: var(--neutrals-50);
+    /* pill background handled by fieldset::before */
     color: var(--neutrals-900);
     font-weight: 600;
 }

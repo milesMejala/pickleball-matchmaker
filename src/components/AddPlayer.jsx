@@ -1,4 +1,6 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
+const SKILLS = ["Beginner", "Intermediate", "Advanced"];
 import "../css/AddPlayer.css";
 
 export default function AddPlayer({ onAddPlayer }) {
@@ -7,6 +9,70 @@ export default function AddPlayer({ onAddPlayer }) {
     skill: "Beginner",
   });
   const [error, setError] = useState("");
+
+  const pillRef = useRef(null);
+  const fieldsetRef = useRef(null);
+  const dragRef = useRef(null); // { startX, startTranslate, isDragging }
+
+  // Sync pill to current skill (handles label clicks)
+  useEffect(() => {
+    const pill = pillRef.current;
+    if (!pill) return;
+    const idx = SKILLS.indexOf(formData.skill);
+    if (idx === -1) return;
+    pill.style.translate = `${idx * pill.offsetWidth}px`;
+  }, [formData.skill]);
+
+  function handlePointerDown(e) {
+    const pill = pillRef.current;
+    if (!pill) return;
+    // Capture the pointer so pointermove/pointerup keep firing even if
+    // the cursor leaves the fieldset mid-drag.
+    fieldsetRef.current.setPointerCapture(e.pointerId);
+    dragRef.current = {
+      startX: e.clientX,
+      startTranslate: parseFloat(pill.style.translate) || 0,
+      isDragging: false,
+    };
+  }
+
+  function handlePointerMove(e) {
+    if (!dragRef.current) return;
+    const pill = pillRef.current;
+    if (!pill) return;
+
+    const delta = e.clientX - dragRef.current.startX;
+
+    // Don't enter drag mode until the user moves 6px
+    if (!dragRef.current.isDragging) {
+      if (Math.abs(delta) < 6) return;
+      dragRef.current.isDragging = true;
+      pill.style.transition = "none"; // follow finger without easing
+    }
+
+    const pillWidth = pill.offsetWidth;
+    const raw = dragRef.current.startTranslate + delta;
+    pill.style.translate = `${Math.max(0, Math.min(pillWidth * 2, raw))}px`;
+  }
+
+  function handlePointerUp() {
+    if (!dragRef.current?.isDragging) {
+      dragRef.current = null;
+      return;
+    }
+    const pill = pillRef.current;
+    if (!pill) return;
+
+    const pillWidth = pill.offsetWidth;
+    const current = parseFloat(pill.style.translate) || 0;
+    const idx = Math.max(0, Math.min(2, Math.round(current / pillWidth)));
+
+    pill.style.transition = ""; // restore for snap animation
+    pill.style.translate = `${idx * pillWidth}px`;
+    setFormData((prev) => ({ ...prev, skill: SKILLS[idx] }));
+
+    dragRef.current = null;
+  }
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -49,7 +115,14 @@ export default function AddPlayer({ onAddPlayer }) {
           aria-describedby={error ? "name-error" : undefined}
         />
         {error && <p id="name-error" className="input-error">{error}</p>}
-        <fieldset>
+        <fieldset
+          ref={fieldsetRef}
+          onPointerDown={handlePointerDown}
+          onPointerMove={handlePointerMove}
+          onPointerUp={handlePointerUp}
+        >
+          {/* Real element so JS can set inline translate + attach events */}
+          <span className="sliding-pill" ref={pillRef} aria-hidden="true" />
           <label className="radio-option" htmlFor="beginner">
             <input
               id="beginner"

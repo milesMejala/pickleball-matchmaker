@@ -84,7 +84,7 @@ export default function AddPlayer({ onAddPlayer }) {
             <span>Adv.</span>
           </label>
         </fieldset>
-        <button type="submit">Add to Roster</button>
+        <button type="submit" className="btn-primary">Add to Roster</button>
       </form>
     </section>
   );

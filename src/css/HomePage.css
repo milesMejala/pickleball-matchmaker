@@ -13,12 +13,8 @@ h1 {
 .generate-matchups-btn {
     min-width: 100%;
     min-height: 4rem;
-    background-color: var(--primary-600);
-    border: none;
     border-radius: 16px;
     font-size: 1.5rem;
-    font-weight:600;
-    color: white;
-    cursor: pointer;
+    font-weight: 600;
 }
 

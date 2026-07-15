@@ -287,7 +287,7 @@ export default function HomePage() {
         randomize={randomize}
         onSetRandomize={setRandomize}
       />
-      <button className="generate-matchups-btn" onClick={handleGenerate}>
+      <button className="generate-matchups-btn btn-primary" onClick={handleGenerate}>
         Generate Matchups
       </button>
       {matchupError && <p className="input-error">{matchupError}</p>}

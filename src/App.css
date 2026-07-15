@@ -80,17 +80,56 @@ body {
 }
 
 .beginner {
-  background: #FBBF24;
+  background-color: #f3e5d0;
+  color: #6f4518;
 }
 
 .intermediate {
-  background: #C0C0C0;
+  background-color: #e7eaee;
+  color: #3f4a54;
 }
 
 .advanced {
-  background: #FFD700;
+  background-color: #fff0b8;
+  color: #705000;
 }
 
 .align-text-end {
     text-align: end;
+}
+
+/* ── Reusable primary (green) button states ── */
+.btn-primary {
+    background: var(--primary-600);
+    color: var(--neutrals-50);
+    border: none;
+    cursor: pointer;
+    transition: background 100ms ease, box-shadow 100ms ease, transform 100ms ease;
+}
+
+.btn-primary:hover {
+    background: var(--primary-500);
+    box-shadow: 0 4px 14px hsla(160, 100%, 31%, 0.35);
+    transform: translateY(-1px);
+}
+
+.btn-primary:active {
+    background: var(--primary-700);
+    box-shadow: none;
+    transform: translateY(1px);
+    transition: background 75ms ease, transform 75ms ease;
+}
+
+.btn-primary:focus-visible {
+    outline: 3px solid var(--primary-300);
+    outline-offset: 3px;
+    box-shadow: 0 0 0 6px hsla(160, 100%, 60%, 0.2);
+}
+
+.btn-primary:disabled {
+    background: var(--neutrals-300);
+    color: var(--neutrals-500);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
 }
